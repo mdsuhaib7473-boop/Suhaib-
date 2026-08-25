@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GramWise — Convert Cooking Measurements in Seconds (Demo)</title>
+<meta name="description" content="Free kitchen calculators to convert grams, cups, tablespoons, ounces and more — accurate, ingredient-specific measurement conversions. This is a static design preview.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .demo-banner{background:#C97A3D;color:#fff;text-align:center;padding:10px 16px;font-size:.85rem;font-family:'Inter',sans-serif;}
+  .demo-banner strong{font-weight:700;}
+</style>
+</head>
+<body>
+<div class="demo-banner">🔎 <strong>Static Design Preview</strong> — calculator works locally in your browser, but this is not the full PHP+MySQL site (no admin, no database, no real page generation).</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="logo">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 3h2l1 9a3 3 0 003 3 3 3 0 003-3l1-9h2l-1 9a5 5 0 01-4 4.9V21h-2v-4.1A5 5 0 015 12L4 3zm14 0a4 4 0 014 4v14h-2v-7h-2v7h-2V4a1 1 0 011-1z" fill="currentColor"/></svg>
+      <span>GramWise</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="primary-nav" class="primary-nav">
+      <a href="#">Home</a>
+      <a href="#converters">All Converters</a>
+      <a href="#ingredients">Ingredients</a>
+      <a href="#guides">Guides</a>
+      <a href="#">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+
+<section class="hero container">
+  <h1 class="hero-title">Convert Cooking Measurements in Seconds</h1>
+  <p class="hero-sub">Weigh it, measure it, get it right the first time. GramWise turns grams, cups, tablespoons and ounces into exact, ingredient-aware conversions — built for real kitchens, not guesswork.</p>
+
+  <div class="scale-card calculator-widget">
+    <div class="scale-readout">
+      <span class="readout-value" id="result">100</span>
+      <span class="unit-label" id="result-unit">grams</span>
+    </div>
+    <div class="calc-grid">
+      <div class="calc-field">
+        <label for="calc-amount">Amount</label>
+        <input type="number" id="calc-amount" inputmode="decimal" step="any" min="0" value="100">
+      </div>
+      <div class="calc-field">
+        <label for="calc-from">From</label>
+        <select id="calc-from">
+          <optgroup label="Weight">
+            <option value="grams" selected>Grams</option>
+            <option value="kilograms">Kilograms</option>
+            <option value="ounces">Ounces</option>
+            <option value="pounds">Pounds</option>
+          </optgroup>
+          <optgroup label="Volume">
+            <option value="milliliters">Milliliters</option>
+            <option value="liters">Liters</option>
+            <option value="cups">Cups</option>
+            <option value="tablespoons">Tablespoons</option>
+            <option value="teaspoons">Teaspoons</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="calc-swap">
+        <button type="button" class="swap-btn" id="calc-swap" aria-label="Swap units">⇄</button>
+      </div>
+    </div>
+    <div class="calc-grid" style="margin-top:4px;">
+      <div class="calc-field">
+        <label for="calc-to">To</label>
+        <select id="calc-to">
+          <optgroup label="Weight">
+            <option value="grams">Grams</option>
+            <option value="kilograms">Kilograms</option>
+            <option value="ounces">Ounces</option>
+            <option value="pounds">Pounds</option>
+          </optgroup>
+          <optgroup label="Volume">
+            <option value="milliliters">Milliliters</option>
+            <option value="liters">Liters</option>
+            <option value="cups" selected>Cups</option>
+            <option value="tablespoons">Tablespoons</option>
+            <option value="teaspoons">Teaspoons</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+    <div class="calc-ingredient" id="calc-ingredient-wrap">
+      <div class="calc-field">
+        <label for="calc-ingredient">Ingredient (needed for weight ⇄ volume)</label>
+        <select id="calc-ingredient">
+          <option value="0.53" selected>All-Purpose Flour</option>
+          <option value="0.85">Sugar</option>
+          <option value="0.56">Powdered Sugar</option>
+          <option value="0.90">Brown Sugar</option>
+          <option value="0.96">Butter</option>
+          <option value="1.42">Honey</option>
+          <option value="0.92">Oil</option>
+          <option value="1.00">Water</option>
+        </select>
+      </div>
+    </div>
+    <p class="calc-note" id="calc-status">Calculating live as you type — no page reload needed.</p>
+  </div>
+</section>
+
+<section class="section container" id="converters">
+  <div class="section-head"><h2>Popular Conversions</h2></div>
+  <div class="card-grid">
+    <div class="card"><span class="pill">Cooking Conversions</span><h3>Grams to Cups</h3><p>Instant grams to cups conversion, ingredient-aware.</p></div>
+    <div class="card"><span class="pill">Cooking Conversions</span><h3>Cups to Grams</h3><p>Instant cups to grams conversion, ingredient-aware.</p></div>
+    <div class="card"><span class="pill">Cooking Conversions</span><h3>Ounces to Grams</h3><p>Direct unit conversion.</p></div>
+    <div class="card"><span class="pill">Temperature</span><h3>Celsius to Fahrenheit</h3><p>Fast oven and recipe temperature conversion.</p></div>
+    <div class="card"><span class="pill">Kitchen Measurements</span><h3>Cups to Tablespoons</h3><p>Direct unit conversion.</p></div>
+    <div class="card"><span class="pill">Kitchen Measurements</span><h3>Tablespoons to Teaspoons</h3><p>Direct unit conversion.</p></div>
+  </div>
+</section>
+
+<section class="section container" id="ingredients">
+  <div class="section-head"><h2>Popular Ingredients</h2></div>
+  <div class="card-grid">
+    <div class="card"><h3>All-Purpose Flour</h3><p>Density-based weight ⇄ volume conversions.</p></div>
+    <div class="card"><h3>Sugar</h3><p>Density-based weight ⇄ volume conversions.</p></div>
+    <div class="card"><h3>Butter</h3><p>Density-based weight ⇄ volume conversions.</p></div>
+    <div class="card"><h3>Honey</h3><p>Density-based weight ⇄ volume conversions.</p></div>
+  </div>
+</section>
+
+<section class="section container" id="guides">
+  <div class="section-head"><h2>Latest Guides</h2></div>
+  <div class="card-grid">
+    <div class="card"><h3>How Many Grams Are in a Cup of Flour?</h3><p>The short answer, plus why it depends on how you measure.</p></div>
+    <div class="card"><h3>Cups vs Grams: Which Is More Accurate?</h3><p>Why professional bakers weigh instead of scoop.</p></div>
+    <div class="card"><h3>Common Baking Measurement Mistakes</h3><p>The small errors that quietly wreck a bake.</p></div>
+  </div>
+</section>
+
+<section class="section container">
+  <h2>Why Use GramWise?</h2>
+  <div class="card-grid">
+    <div class="card"><h3>Ingredient-Aware</h3><p>We use real ingredient densities, not a single generic "1 cup = X grams" number.</p></div>
+    <div class="card"><h3>No Reload, No Wait</h3><p>The calculator updates instantly as you type.</p></div>
+    <div class="card"><h3>Built for Every Recipe</h3><p>From spoon-and-level flour to packed brown sugar.</p></div>
+  </div>
+</section>
+
+<section class="section container">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-list">
+    <details class="faq-item"><summary>Why does a cup of flour weigh less than a cup of sugar?</summary><p>Because they have different densities — flour is light and airy while sugar is more compact, so the same volume weighs a different amount.</p></details>
+    <details class="faq-item"><summary>Is weighing more accurate than using cups?</summary><p>Yes, especially for baking — a kitchen scale removes the variation caused by how ingredients are packed or leveled.</p></details>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <div class="logo"><span>GramWise</span></div>
+      <p>Smart Kitchen Measurement &amp; Conversion</p>
+    </div>
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <a href="#converters">All Converters</a>
+      <a href="#ingredients">Ingredients</a>
+      <a href="#guides">Guides</a>
+    </div>
+    <div class="footer-col">
+      <h3>Legal</h3>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; 2026 GramWise — Static design preview only.</p>
+  </div>
+</footer>
+
+<script>
+// ---- Same conversion math as the real PHP app, ported to JS for this demo ----
+const units = {
+  grams:       { type: 'mass',   factor: 1,        name: 'Grams' },
+  kilograms:   { type: 'mass',   factor: 1000,      name: 'Kilograms' },
+  ounces:      { type: 'mass',   factor: 28.3495,   name: 'Ounces' },
+  pounds:      { type: 'mass',   factor: 453.592,   name: 'Pounds' },
+  milliliters: { type: 'volume', factor: 1,         name: 'Milliliters' },
+  liters:      { type: 'volume', factor: 1000,      name: 'Liters' },
+  cups:        { type: 'volume', factor: 236.588,   name: 'Cups' },
+  tablespoons: { type: 'volume', factor: 14.7868,   name: 'Tablespoons' },
+  teaspoons:   { type: 'volume', factor: 4.92892,   name: 'Teaspoons' },
+};
+
+function convert(amount, fromKey, toKey, density) {
+  const from = units[fromKey], to = units[toKey];
+  if (from.type === to.type) {
+    return (amount * from.factor) / to.factor;
+  }
+  if (from.type === 'mass' && to.type === 'volume') {
+    const grams = amount * from.factor;
+    return (grams / density) / to.factor;
+  }
+  if (from.type === 'volume' && to.type === 'mass') {
+    const ml = amount * from.factor;
+    return (ml * density) / to.factor;
+  }
+}
+
+function formatNum(n) {
+  if (Math.abs(n - Math.round(n)) < 0.0005) return Math.round(n).toString();
+  return n.toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+}
+
+const amountEl = document.getElementById('calc-amount');
+const fromEl = document.getElementById('calc-from');
+const toEl = document.getElementById('calc-to');
+const ingredientEl = document.getElementById('calc-ingredient');
+const ingredientWrap = document.getElementById('calc-ingredient-wrap');
+const swapBtn = document.getElementById('calc-swap');
+const resultEl = document.getElementById('result');
+const resultUnitEl = document.getElementById('result-unit');
+const statusEl = document.getElementById('calc-status');
+
+function toggleIngredient() {
+  const needsIngredient = units[fromEl.value].type !== units[toEl.value].type;
+  ingredientWrap.style.display = needsIngredient ? '' : 'none';
+}
+
+function run() {
+  const amount = parseFloat(amountEl.value);
+  if (isNaN(amount)) return;
+  const density = parseFloat(ingredientEl.value);
+  try {
+    const result = convert(amount, fromEl.value, toEl.value, density);
+    resultEl.textContent = formatNum(result);
+    resultUnitEl.textContent = units[toEl.value].name;
+    statusEl.textContent = 'Calculating live as you type — no page reload needed.';
+  } catch (e) {
+    statusEl.textContent = 'Could not calculate that conversion.';
+  }
+}
+
+amountEl.addEventListener('input', run);
+fromEl.addEventListener('change', () => { toggleIngredient(); run(); });
+toEl.addEventListener('change', () => { toggleIngredient(); run(); });
+ingredientEl.addEventListener('change', run);
+swapBtn.addEventListener('click', () => {
+  const f = fromEl.value, t = toEl.value;
+  fromEl.value = t; toEl.value = f;
+  toggleIngredient(); run();
+});
+
+const navToggle = document.querySelector('.nav-toggle');
+const nav = document.getElementById('primary-nav');
+navToggle.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+
+toggleIngredient();
+run();
+</script>
+</body>
+</html>
